@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Аптека</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #CDE6C7, #93E3E3);
+        }
+        .container {
+            display: flex;
+            max-width: 800px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            background: linear-gradient(to right, #ffffff, #e0f7fa);
+        }
+        .left-side {
+            flex: 1;
+            padding-right: 20px;
+            border-radius: 15px;
+            background: linear-gradient(to right, #ffffff, #e0f7fa);
+            padding: 20px;
+        }
+        .right-side {
+            flex: 1;
+            text-align: center;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        p {
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        input:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="content"></div>
+
+<script>
+    let SPAState = {}
+
+    window.onhashchange = switchToStateFromURLHash;
+
+    function switchToStateFromURLHash() {
+        let URLHash = window.location.hash
+        let stateStr = URLHash.substr(1)
+
+        if (stateStr !== '') {
+            SPAState = { pagename: stateStr }
+        } else {
+            SPAState = { pagename: 'Main'}
+        }
+
+        let pageHTML = ''
+        switch (SPAState.pagename) {
+            case 'Main':
+                pageHTML = `
+                <div class="left-side">
+                    <h1>Аптека</h1>
+                    <p>Добро пожаловать на сайт нашей аптеки. Мы стремимся предоставить
+                    вам высококачественную фармацевтическую продукцию и отличное обслуживание клиентов.</p>
+                    <input type=button value='В наличии' onclick='switchToStockPage()'>
+                </div>
+                <div class="right-side">
+                     <img src="img/cross.png" alt="Pharmacy Image" style="max-width: 250px; max-height: 250px; padding: 10px">
+                </div>
+                `
+                break
+
+            case 'Stock':
+                pageHTML = `
+                <div>
+                <h1>Широкий ассортимент лекарств</h1>
+                <p>
+                 В нашем ассортименте представлены лекарственные средства для самых разных
+                 потребностей и состояний здоровья. Независимо от того, нужны ли вам обычные
+                 препараты для лечения простуды или редкие специализированные медикаменты,
+                 у нас вы всегда найдете то, что вам нужно.
+                </p>
+                <input type=button value='Главная' onclick='switchToMainPage()' style="float: right">
+                <div>
+                `
+        }
+
+        document.getElementById('content').innerHTML = pageHTML
+    }
+
+    function switchToState(newState) {
+        location.hash = newState.pagename
+    }
+
+    function switchToMainPage() {
+        switchToState( { pagename: 'Main' } )
+    }
+
+    function switchToStockPage() {
+        switchToState( { pagename: 'Stock'} )
+    }
+
+    switchToStateFromURLHash()
+</script>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Menu</title>
+    <style>
+        /* Styles for horizontal main menu */
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .menu li {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        /* Styles for vertical submenus */
+        .menu ul {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            padding: 0;
+            margin: 0;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            z-index: 1;
+        }
+        .menu ul li {
+            display: block;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<div id="parent-menu"></div>
+
+<script>
+    function ShowMenu(MenuItemsA, ParentElem) {
+        const ul = document.createElement('ul');
+        ul.classList.add('menu');
+
+        MenuItemsA.forEach(item => {
+            const li = document.createElement('li');
+            const div = document.createElement('div');
+            div.textContent = item.name;
+            div.classList.add('menu-item');
+
+            if (item.submenu && item.submenu.length > 0) {
+                div.classList.add('has-submenu');
+                div.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const submenu = li.querySelector('ul');
+                    if (submenu.style.display === 'block') {
+                        submenu.style.display = 'none';
+                    } else {
+                        submenu.style.display = 'block';
+                    }
+                });
+            } else {
+                div.addEventListener('click', () => {
+                    window.location.href = item.url;
+                });
+            }
+
+            li.appendChild(div);
+            if (item.submenu) {
+                const submenuUl = ShowMenu(item.submenu, li);
+                li.appendChild(submenuUl);
+            }
+            ul.appendChild(li);
+        });
+
+        ParentElem.appendChild(ul);
+        return ul;
+    }
+
+    // Menu items array
+    const MenuA = [
+        {name:'Зрение >',submenu:
+                [
+                    {name:'Контактные линзы >',submenu:
+                            [
+                                {name:'По акции',url:'https://apteka.ru'},
+                                {name:'В наличии',url:'https://apteka.ru'}
+                            ]
+                    },
+                    {name:'Очки',url:'https://apteka.ru'},
+                    {name:'Средства ухода и аксессуары >',submenu:
+                            [
+                                {name:'Раствор для линз',url:'https://apteka.ru'},
+                                {name:'Капли для глаз',url:'https://apteka.ru'},
+                                {name:'Контейнер для линз',url:'https://apteka.ru'},
+                            ]
+                    }
+                ]
+        },
+        {name:'Ухо горло нос',url:'https://apteka.ru'},
+        {name:'Базовый уход >',submenu:
+                [
+                    {name:'Лицо',url:'https://apteka.ru'},
+                    {name:'Средства для тела >',submenu:
+                            [
+                                {name:'Крем-бальзам восстановитель кожи',url:'https://apteka.ru'},
+                                {name:'Мыло', url:'https://apteka.ru'}
+                            ]
+                    },
+                    {name:'Косметическое масло',url:'https://apteka.ru'}
+                ]
+        }
+    ];
+
+    const menuElement = document.getElementById('parent-menu');
+    ShowMenu(MenuA, menuElement);
+</script>
+</body>
+</html>

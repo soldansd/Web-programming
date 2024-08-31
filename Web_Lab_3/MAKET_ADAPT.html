@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Аптека</title>
+    <style>
+       * {
+            box-sizing: border-box;
+            margin:0;
+            padding:0;
+        }
+
+        .header {
+            text-align: center;
+            background-color: aquamarine;
+            padding: 15px;
+            font-size: 25px;
+            font-family: Helvetica;
+            width: 100%;
+        }
+
+        .menu {
+            float: left;
+            max-width: 250px;
+            min-width: 250px;
+            background-color: rgba(255, 255, 0, 0.8);
+            word-break: break-all;
+            vertical-align: top;
+            padding: 10px;
+            justify-content: center;
+        }
+
+        .content {
+            flex: 1;
+            width: 100%;
+            padding: 40px;
+            background: url('img/cross.png')  right top repeat-y;
+            background-size: 70px;
+        }
+
+        .footer {
+            text-align: center;
+            background-color: aquamarine;
+            padding: 20px;
+            font-size: 22px;
+            font-family: Helvetica;
+            width: 100%;
+            clear: top;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .container-small {
+            display: flex;
+            flex: 1;
+            flex-direction: row;
+            width: 100%;
+        }
+
+        .image-container {
+            display: flex;
+            float: left;
+            justify-content: left;
+        }
+
+        .image {
+            float: left;
+            width: 250px;
+            height: 250px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            margin-top: 12px;
+            margin-left: 27px;
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+
+        @media screen and (max-width: 640px)
+        {
+            .container {
+                align-items: center;
+                justify-items: center;
+            }
+
+            .container-small {
+                flex-direction: column;
+            }
+
+            .content {
+                order: 1;
+                background: white;
+            }
+
+            .menu {
+                order: 2;
+                max-width: 100%;
+                min-width: 100%;
+            }
+
+            .image-container {
+                float: none;
+                justify-content: center;
+            }
+
+            .image {
+                float: none;
+            }
+
+            li {
+                display: inline-block;
+                vertical-align: top;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            Добро пожаловать в нашу аптеку!
+        </div>
+
+        <div class="container-small">
+            <div class="menu">
+                <p>Навигация:</p>
+                <ul>
+                    <li><a href="page1.html#start">Главная</a></li>
+                    <li><a href="page1.html#medicines">Ассортимент лекарств</a></li>
+                    <li><a href="page1.html#advice">Консультации</a></li>
+                    <li><a href="page1.html#promotion">Акции</a></li>
+                    <li><a href="page1.html#delivery">Расположение и доставка</a></li>
+                    <li><a href="page1.html#feedback">Обратная связь</a></li>
+                    <li><a href="page4.html#stock">Товары в наличии</a></li>
+                    <li>
+                        <a href="https://www.aspirin.ru/our-products/aspirin-c/instruction/">
+                            Аспирин
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://ru.wikipedia.org/wiki/
+                                %D0%9F%D0%B0%D1%80%D0%B0%D1%86%D0%B5%D1%82%D0%B0%D0%BC%D0%BE%D0%BB">
+                            Парацетамол
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://ru.wikipedia.org/wiki/
+                                %D0%98%D0%B1%D1%83%D0%BF%D1%80%D0%BE%D1%84%D0%B5%D0%BD">
+                            Ибупрофен
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://ru.wikipedia.org/wiki/
+                                %D0%9B%D0%BE%D1%80%D0%B0%D1%82%D0%B0%D0%B4%D0%B8%D0%BD">
+                            Лоратадин
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nurofen.ru/">
+                            Нурофен
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://ru.wikipedia.org/wiki/
+                                 %D0%A4%D0%B5%D0%BD%D0%B0%D0%B7%D0%B5%D0%BF%D0%B0%D0%BC">
+                            Феназепам
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://ru.wikipedia.org/wiki/
+                                 %D0%90%D0%BC%D0%B1%D1%80%D0%BE%D0%BA%D1%81%D0%BE%D0%BB">
+                            Амброксол
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <p style="font-size: 24px; text-align: center; vertical-align: central; padding: 10px; font-weight: bold; margin: 10px;">
+                    Обсуждение дня: "Что нужно для хорошего сна?"
+                </p>
+
+                <div class="image-container">
+                    <img src="img/mainlogo.png" class="image">
+                </div>
+
+                <p>
+                    Во сне организм восстанавливается, вырабатывает нужные для жизни гормоны
+                    и анализирует воспоминания, накопившиеся за день. Хронический недосып может
+                    увеличить риски болезни Альцгеймера и гипертонической болезни. Рассказываем,
+                    как гигиена сна помогает наладить сон и всем ли нужны ортопедические подушки и матрасы,
+                    чтобы высыпаться.<br>Сон — это состояние, при котором замедляются все процессы,
+                    угасает сознание и уменьшается взаимодействие организма с внешним миром.
+                    При этом замедляется сердцебиение и частота дыхания, работа кишечника и почек, а также
+                    снижается давление и замедляется обмен веществ. Но головной мозг сохраняет активность и
+                    занимается регуляцией жизнедеятельности.<br>Сон состоит из двух фаз: медленной и быстрой,
+                    которая занимает около 25% от общего количества. Когда мы засыпаем, то наступает медленная фаза сна.
+                    Замедляется сердцебиение и дыхание, расслабляются мышцы и снижается температура.
+                    После полного погружения в медленную фазу, разбудить человека сложнее всего.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            Широкий ассортимент в наличии
+        </div>
+    </div>
+</body>
+</html>
